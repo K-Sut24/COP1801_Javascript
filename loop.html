@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Task</title>
+</head>
+<body>
+
+    <h2>Counting and Checking Odd or Even</h2>
+    <div id="counting"></div>
+
+    <h2>Do While Loop Task</h2>
+    <div id="doWhileResult"></div>
+
+    <h2>Subjects List</h2>
+    <div id="subjectList"></div>
+
+    <h2>Subjects (Comma Separated)</h2>
+    <div id="commaSeparatedSubjects"></div>
+	<script>
+        // Task 1: For loop to count from 0 to 10 and check if the number is odd or even
+        let countingOutput = "";
+        for (let i = 0; i <= 10; i++) {
+            if (i % 2 === 0) {
+                countingOutput += `Count ${i} is even<br>`;
+            } else {
+                countingOutput += `Count ${i} is odd<br>`;
+            }
+        }
+        document.getElementById("counting").innerHTML = countingOutput;
+
+         // Task 2: Ask for a number between 5 and 20, then use it in a Do While loop
+        let myNum;
+        do {
+            myNum = prompt("Please enter a number between 5 and 20:");
+            myNum = parseInt(myNum);
+
+            if (myNum < 5 || myNum > 20 || isNaN(myNum)) {
+                alert("Invalid input. Please enter a number between 5 and 20.");
+            }
+        } while (myNum < 5 || myNum > 20 || isNaN(myNum));
+
+        let counter = 1;
+        let doWhileOutput = "";
+        do {
+            doWhileOutput += `Loop counter is at: ${counter}<br>`;
+            counter++;
+        } while (counter <= myNum);
+        document.getElementById("doWhileResult").innerHTML = doWhileOutput;
+
+        // Task 3: Store subjects in an array and display them
+        let subjects = ["Accounting", "Algebra", "Programming", "Art", "Data Analytics"];
+
+        let subjectListOutput = "<ul>";
+        subjects.forEach(subject => {
+            subjectListOutput += `<li>${subject}</li>`;
+        });
+        subjectListOutput += "</ul>";
+        document.getElementById("subjectList").innerHTML = subjectListOutput;
+
+        // Task 4: Display the subjects as a comma-separated list
+        let commaSeparatedSubjects = subjects.join(", ");
+        document.getElementById("commaSeparatedSubjects").innerHTML = commaSeparatedSubjects;
+
+    </script>
+
+</body>
+</html>
