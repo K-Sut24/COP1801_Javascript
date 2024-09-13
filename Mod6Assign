@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bluey - Fictional Dog Object</title>
+  <script>
+    // Create myDog object using object literal syntax
+    let myDog = {
+      name: "Bluey",
+      breed: "Australian Cattle Dog",
+      show: "Bluey",
+      description: "A female anthropomorphic 6-year-old blue heeler puppy. I am curious and energetic.",
+      mySound: "I am always excited and curious. My bark is playful, just like me!",
+      
+      // Display method to describe the dog
+      describe: function() {
+        return `Hello, my name is ${this.name}, I am an ${this.breed} from the show ${this.show}. ${this.description} When I bark, you can tell: ${this.mySound}`;
+      }
+    };
+
+    // Create constructor function for Dog
+    function Dog(name, breed, show, description, mySound, canTalk) {
+      this.name = name;
+      this.breed = breed;
+      this.show = show;
+      this.description = description;
+      this.mySound = mySound;
+      this.canTalk = canTalk;
+      
+      // Method to greet and describe the dog, with a conditional statement
+      this.myGreeting = function() {
+        let talkAbility = this.canTalk ? "I can talk!" : "I cannot talk.";
+        return `Hi! I'm ${this.name}, an ${this.breed} from the show ${this.show}. ${this.description} Here's what I sound like: ${this.mySound}. ${talkAbility}`;
+      };
+    }
+
+    // Create instances of myDogConst and two other dog objects
+    let myDogConst = new Dog(
+      "Bluey", 
+      "Australian Cattle Dog", 
+      "Bluey", 
+      "A female anthropomorphic 6-year-old blue heeler puppy. I am curious and energetic.", 
+      "I am always excited and curious. My bark is playful, just like me!", 
+      true
+    );
+
+    let clifford = new Dog(
+      "Clifford", 
+      "Labrador Retriever", 
+      "Clifford the Big Red Dog", 
+      "Pet dog of Emily Elizabeth and the title character of the series; a giant dog that gets in constant trouble.", 
+      "A deep, loud bark that matches his size!", 
+      false
+    );
+
+    let underdog = new Dog(
+      "Underdog", 
+      "Beagle", 
+      "Underdog", 
+      "About a dog with super powers who always speaks in rhymes.", 
+      "Woof! A rhyming superhero!", 
+      true
+    );
+
+    // Function to display the results using for...in loop
+    function displayProperties(dog) {
+      let result = "";
+      for (let property in dog) {
+        if (typeof dog[property] !== "function") {
+          result += `${property}: ${dog[property]}<br>`;
+        }
+      }
+      return result;
+    }
+
+    // Prompt user to select a dog
+    function selectDog() {
+      let dogName = prompt("Please enter a dog name: Bluey, Clifford, or Underdog:");
+      let selectedDog;
+
+      if (dogName.toLowerCase() === "bluey") {
+        selectedDog = myDogConst;
+      } else if (dogName.toLowerCase() === "clifford") {
+        selectedDog = clifford;
+      } else if (dogName.toLowerCase() === "underdog") {
+        selectedDog = underdog;
+      } else {
+        document.getElementById("selectionOutput").innerHTML = "Error: The selected dog does not exist.";
+        return;
+      }
+
+      document.getElementById("selectionOutput").innerHTML = displayProperties(selectedDog) + "<br>" + selectedDog.myGreeting();
+    }
+
+    // Function to display the literal and constructor dog objects
+    function displayInfo() {
+      document.getElementById("literalOutput").innerHTML = myDog.describe();
+      document.getElementById("constructorOutput").innerHTML = myDogConst.myGreeting();
+    }
+
+  </script>
+</head>
+<body onload="displayInfo()">
+
+  <h1>Fictional Dog: Bluey</h1>
+
+  <h2>Object Literal Example</h2>
+  <p id="literalOutput"></p>
+
+  <h2>Constructor Example</h2>
+  <p id="constructorOutput"></p>
+
+  <h2>Dog Selection</h2>
+  <button onclick="selectDog()">Select a Dog</button>
+  <p id="selectionOutput"></p>
+
+</body>
+</html>
